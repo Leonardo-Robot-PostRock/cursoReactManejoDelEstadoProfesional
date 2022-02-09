@@ -13,6 +13,53 @@ function UseState({ name }) {
 
     console.log(state.value)
 
+    const onConfirm = () => {
+        setState({
+            ...state,
+            loading: false,
+            error: false,
+            confirmed: true,
+        });
+    }
+
+    const onError = () => {
+        setState({
+            ...state,
+            error: true,
+            loading: false,
+        });
+    }
+
+    const onWrite = (newValue) => {
+        setState({
+            ...state,
+            value: newValue,
+        })
+    }
+
+    const onCheck = () => {
+        setState({
+            ...state,
+            loading: true,
+        });
+    }
+
+    const onDelete = () => {
+        setState({
+            ...state,
+            deleted: true,
+        })
+    }
+
+    const onReset = () => {
+        setState({
+            ...state,
+            confirmed: false,
+            deleted: false,
+            value: '',
+        })
+    }
+
     React.useEffect(() => {
         console.log("Empezando el efecto")
         if (!!state.loading) {
@@ -20,18 +67,9 @@ function UseState({ name }) {
                 console.log("Haciendo la validación")
 
                 if (state.value === SECURITY_CODE) {
-                    setState({
-                        ...state,
-                        loading: false,
-                        error: false,
-                        confirmed: true,
-                    });
+                    onConfirm();
                 } else {
-                    setState({
-                        ...state,
-                        error: true,
-                        loading: false,
-                    });
+                    onError();
                 }
 
                 console.log("terminando la validación")
@@ -60,19 +98,13 @@ function UseState({ name }) {
                     value={state.value}
                     onChange={(event) => {
                         // setError(false); otra solución
-                        setState({
-                            ...state,
-                            value: event.target.value,
-                        })
+                        onWrite(event.target.value);
                     }}
                 />
                 <button
                     onClick={() => {
                         // setError(false); Solución para quitar estado de error una vez haya sido mostrado
-                        setState({
-                            ...state,
-                            loading: true,
-                        });
+                        onCheck();
                     }}
                 >Comprobar</button>
             </div>
@@ -83,21 +115,14 @@ function UseState({ name }) {
                 <p>Pedimos confirmación. Estas seguro/a </p>
                 <button
                     onClick={() => {
-                        setState({
-                            ...state,
-                            deleted: true,
-                        })
+                        onDelete();
                     }}
                 >
                     Eliminar
                 </button>
                 <button
                     onClick={() => {
-                        setState({
-                            ...state,
-                            confirmed: false,
-                            value: '',
-                        })
+                        onReset();
                     }}
                 >
                     Volver
@@ -110,12 +135,7 @@ function UseState({ name }) {
                 <p>Eliminado con éxito</p>
                 <button
                     onClick={() => {
-                        setState({
-                            ...state,
-                            confirmed: false,
-                            deleted: false,
-                            value: '',
-                        })
+                        onReset();
                     }}
                 >
                     Resetear, volvear atrás
