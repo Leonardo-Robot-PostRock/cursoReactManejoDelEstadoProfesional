@@ -9,12 +9,6 @@ const initialState = {
 // const reducer = (state, action) => {
 
 // }
-const newValue = (value) => {
-    setState({
-        ...state,
-        value: value,
-    })
-}
 const reducer = (state, action) => {
     if (action.type === 'ERROR') {
         return {
