@@ -4,6 +4,6 @@
 # En ese proyecto utilizo distintas metodologías para crear estados
 # También se crean distintas versiones entre los commit, de como generar un código imperativo, semideclarativo y declarativo al máximo con Use Reducer
 - Entre ellos:
-**Use State**
-**Use Class**
-**Use Reducer**
+1- **Use State**
+2- **Use Class**
+3- **Use Reducer**
