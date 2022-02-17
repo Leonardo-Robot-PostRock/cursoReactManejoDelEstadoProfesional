@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import { ClassState } from './ClassState';
+import { UseReducer } from './UseReducer';
 import { UseState } from './UseState';
 
 function App() {
   return (
     <div className="App">
-      <UseState name="UseState"/>
-      <ClassState name="ClassState"/>
+      <UseState name="Use State"/>
+      <UseReducer name="Use Reducer"/>
     </div>
   );
 }
