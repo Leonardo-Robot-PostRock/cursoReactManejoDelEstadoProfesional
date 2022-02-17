@@ -63,13 +63,10 @@ const reducer = (state, action) => {
 function UseReducer({ name }) {
     const [state, dispatch] = React.useReducer(reducer, initialState);
 
-    const onConfirm = () => {
-        dispatch({ type: actionTypes.confirm })
-    }
+    const onConfirm = () => dispatch({ type: actionTypes.confirm })
 
-    const onError = () => {
-        dispatch({ type: actionTypes.error })
-    }
+
+    const onError = () => dispatch({ type: actionTypes.error })
 
     // const onWrite = (event) => {
     //     dispatch({ type: actionTypes.write, payload: event.target.value })
@@ -78,24 +75,20 @@ function UseReducer({ name }) {
     //     dispatch({ type: actionTypes.write, payload: target.value })
     // }
 
-    const onWrite = ({ target: { value } }) => {
-        dispatch({
-            type: actionTypes.write,
-            payload: value
-        })
-    }
+    const onWrite = ({ target: { value } }) => dispatch({
+        type: actionTypes.write,
+        payload: value
+    })
 
-    const onCheck = () => {
-        dispatch({ type: actionTypes.check })
-    }
 
-    const onDelete = () => {
-        dispatch({ type: actionTypes.delete })
-    }
+    const onCheck = () => dispatch({ type: actionTypes.check })
 
-    const onReset = () => {
-        dispatch({ type: actionTypes.reset })
-    }
+
+    const onDelete = () => dispatch({ type: actionTypes.delete })
+
+
+    const onReset = () => dispatch({ type: actionTypes.reset })
+
 
     console.log(state)
 
