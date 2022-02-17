@@ -71,10 +71,17 @@ function UseReducer({ name }) {
         dispatch({ type: actionTypes.error })
     }
 
-    const onWrite = (newValue) => {
+    // const onWrite = (event) => {
+    //     dispatch({ type: actionTypes.write, payload: event.target.value })
+    // }
+    // const onWrite = (target) => {
+    //     dispatch({ type: actionTypes.write, payload: target.value })
+    // }
+
+    const onWrite = ({ target: { value } }) => {
         dispatch({
-            ...state,
-            value: newValue
+            type: actionTypes.write,
+            payload: value
         })
     }
 
@@ -128,14 +135,13 @@ function UseReducer({ name }) {
                 <input
                     placeholder="Código de seguridad"
                     value={state.value}
-                    onChange={(event) => {
-                        onWrite();
-                    }}
+                    onChange={onWrite}
+                // onChange={(event) => {
+                //     onWrite(event.target.value);
+                // }}
                 />
                 <button
-                    onClick={() => {
-                        onCheck();
-                    }}
+                    onClick={onCheck}
                 >Comprobar</button>
             </div>
         );
@@ -144,16 +150,12 @@ function UseReducer({ name }) {
             <React.Fragment>
                 <p>Pedimos confirmación. Estas seguro/a </p>
                 <button
-                    onClick={() => {
-                        onDelete();
-                    }}
+                    onClick={onDelete}
                 >
                     Eliminar
                 </button>
                 <button
-                    onClick={() => {
-                        onReset();
-                    }}
+                    onClick={onReset}
                 >
                     Volver
                 </button>
@@ -164,9 +166,7 @@ function UseReducer({ name }) {
             <React.Fragment>
                 <p>Eliminado con éxito</p>
                 <button
-                    onClick={() => {
-                        onReset();
-                    }}
+                    onClick={onReset}
                 >
                     Resetear, volvear atrás
                 </button>
