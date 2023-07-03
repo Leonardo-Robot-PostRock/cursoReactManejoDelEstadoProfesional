@@ -76,6 +76,7 @@ function UseState({ name }) {
             }, 3000);
         }
         console.log("terminando el efecto")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.loading]);
 
     if (!state.confirmed && !state.deleted) {
